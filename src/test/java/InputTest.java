@@ -17,7 +17,7 @@ public class InputTest {
     public WebDriver driver;
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/inputs");
@@ -48,7 +48,7 @@ public class InputTest {
         driver.findElement(By.tagName("input")).sendKeys(Keys.ARROW_UP);
         driver.findElement(By.tagName("input")).sendKeys(Keys.ARROW_DOWN);
         String value = driver.findElement(By.tagName("input")).getText(); //todo: I can't to get text from this field :( How it should be implemented?
-                                                                          // also character "e" can be entered, it would be useful to check this case.
+        // also character "e" can be entered, it would be useful to check this case.
         Assert.assertEquals(value, "2", "Wrong value");
     }
 

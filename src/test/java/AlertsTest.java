@@ -15,7 +15,7 @@ public class AlertsTest {
     public WebDriver driver;
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/javascript_alerts");

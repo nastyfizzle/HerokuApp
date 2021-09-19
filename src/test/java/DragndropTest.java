@@ -17,7 +17,7 @@ public class DragndropTest {
     public Actions actions;
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/drag_and_drop");

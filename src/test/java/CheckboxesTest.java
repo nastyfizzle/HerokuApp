@@ -17,7 +17,7 @@ public class CheckboxesTest {
     public WebDriver driver;
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/checkboxes");
@@ -27,14 +27,14 @@ public class CheckboxesTest {
 
     //Check selection of checkboxes
     @Test
-    public void checkboxesSelection () {
+    public void checkboxesSelection() {
         List<WebElement> checkBoxes = driver.findElements(By.cssSelector("[type='checkbox']"));
-        assertFalse(checkBoxes.get(0).isSelected(),"First checkbox is not selected");
+        assertFalse(checkBoxes.get(0).isSelected(), "First checkbox is not selected");
         checkBoxes.get(0).click();
         assertTrue(checkBoxes.get(0).isSelected(), "First checkbox is selected");
         assertTrue(checkBoxes.get(1).isSelected(), "Second checkbox is selected");
         checkBoxes.get(1).click();
-        assertFalse(checkBoxes.get(1).isSelected(),"Second checkbox is not selected");
+        assertFalse(checkBoxes.get(1).isSelected(), "Second checkbox is not selected");
     }
 
     @AfterMethod

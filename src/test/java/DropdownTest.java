@@ -16,7 +16,7 @@ public class DropdownTest {
     public WebDriver driver;
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/dropdown");
@@ -29,7 +29,7 @@ public class DropdownTest {
     public void availableElements() {
         Select dropdown = new Select(driver.findElement(By.id("dropdown")));
         List<WebElement> numOfElements = dropdown.getOptions();
-        Assert.assertEquals(numOfElements.size(),3,"Amount of options is incorrect");
+        Assert.assertEquals(numOfElements.size(), 3, "Amount of options is incorrect");
     }
 
     //Check selection the first element

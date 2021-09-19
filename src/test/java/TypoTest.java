@@ -13,7 +13,7 @@ public class TypoTest {
     public WebDriver driver;
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/typos");
@@ -23,7 +23,7 @@ public class TypoTest {
 
     //Check spelling of paragraph
     @Test
-    public void textShouldBeWithoutTypo () {
+    public void textShouldBeWithoutTypo() {
         String text = driver.findElement(By.xpath("//p[2]")).getText();
         Assert.assertEquals(text, "Sometimes you'll see a typo, other times you won't.", "Text has a typo");
     }

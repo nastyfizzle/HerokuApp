@@ -13,7 +13,7 @@ public class NotificationMessageTest {
     public WebDriver driver;
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/notification_message_rendered");
@@ -23,7 +23,7 @@ public class NotificationMessageTest {
 
     //Check the chain: click, displaying, text
     @Test
-    public void checkNotification () {
+    public void checkNotification() {
         driver.findElement(By.xpath("//*[@id='content']//a")).click();
         String notificationText = driver.findElement(By.xpath("//*[@id='flash']")).getText();
         Assert.assertEquals(notificationText, "Action unsuccesful, please try again\n" + "×", "Text is wrong");

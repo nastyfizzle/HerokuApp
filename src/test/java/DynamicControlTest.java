@@ -18,7 +18,7 @@ public class DynamicControlTest {
     public WebDriverWait wait;
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/dynamic_controls");
@@ -28,7 +28,7 @@ public class DynamicControlTest {
     }
 
     @Test
-   public void checkBoxShouldBeDisappeared() {
+    public void checkBoxShouldBeDisappeared() {
         //Найти чекбокс
         String checkboxText = driver.findElement(By.id("checkbox")).getText();
         assertEquals(checkboxText, "A checkbox", "Text is wrong or checkbox wasn't found");
