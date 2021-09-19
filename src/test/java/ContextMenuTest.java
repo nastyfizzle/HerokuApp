@@ -23,6 +23,7 @@ public class ContextMenuTest {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
+    //Check the text of the alert
     @Test
     public void validateAlertText() {
         Actions actions = new Actions(driver);
