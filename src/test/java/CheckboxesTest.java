@@ -6,7 +6,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class CheckboxesTest {
 
@@ -21,48 +25,16 @@ public class CheckboxesTest {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
-    //Check that first checkbox not isSelected and check
+    //Check selection of checkboxes
     @Test
-    public void firstIsSelected () {
-        WebElement checkbox = driver.findElement(By.xpath("//*[@id='checkboxes']/input[1]"));
-        boolean isSelected = checkbox.isSelected();
-        if(!isSelected) {
-            checkbox.click();
-        }
-        else {
-            System.out.println("Checkbox 1 is selected");
-        }
-    }
-
-    //Check that both checkboxes are selected
-    @Test
-    public void bothAreSelected () {
-        //WebElement checkbox1 = driver.findElement(By.xpath("//*[@id='checkboxes']/input[1]"));
-        WebElement checkbox1 = driver.findElement(By.cssSelector("[type=checkbox]"));
-        checkbox1.click();
-        WebElement checkbox2 = driver.findElement(By.xpath("//*[@id='checkboxes']/input[2]"));
-        boolean isSelected1 = checkbox1.isSelected();
-        boolean isSelected2 = checkbox2.isSelected();
-        if (isSelected1) {
-            if (!isSelected2) {
-                System.out.println("Both or one of the checkboxes are deselected");
-            }
-        } else {
-            System.out.println("Both or one of the checkboxes are deselected");
-        }
-    }
-
-    //Check that second checkbox isSelected and uncheck
-    @Test
-    public void secondIsDeselected () {
-        WebElement checkbox2 = driver.findElement(By.xpath("//*[@id='checkboxes']/input[2]"));
-        boolean isSelected = checkbox2.isSelected();
-        if(isSelected) {
-            checkbox2.click();
-        }
-        else {
-            System.out.println("Checkbox 2 is deselected");
-        }
+    public void checkboxesSelection () {
+        List<WebElement> checkBoxes = driver.findElements(By.cssSelector("[type='checkbox']"));
+        assertFalse(checkBoxes.get(0).isSelected(),"First checkbox is not selected");
+        checkBoxes.get(0).click();
+        assertTrue(checkBoxes.get(0).isSelected(), "First checkbox is selected");
+        assertTrue(checkBoxes.get(1).isSelected(), "Second checkbox is selected");
+        checkBoxes.get(1).click();
+        assertFalse(checkBoxes.get(1).isSelected(),"Second checkbox is not selected");
     }
 
     @AfterMethod
