@@ -1,8 +1,7 @@
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -11,30 +10,31 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class DragndropTest {
+public class ContextMenuTest {
 
     public WebDriver driver;
-    public Actions actions;
 
     @BeforeMethod
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get("http://the-internet.herokuapp.com/drag_and_drop");
+        driver.get("http://the-internet.herokuapp.com/context_menu");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        actions = new Actions(driver);
     }
 
-    //Check changing places of boxes using dnd option
+    //Check the text of the alert
     @Test
-    public void changePlaces() {
-        WebElement boxA = driver.findElement(By.id("column-a"));
-        WebElement boxB = driver.findElement(By.id("column-b"));
-        Action dragAndDrop = actions.dragAndDrop(boxA, boxB).build();
-        dragAndDrop.perform(); //todo: Why does it work incorrectly?
-        String boxName = driver.findElement(By.xpath("//*[@id='column-a']/header")).getText();
-        Assert.assertEquals(boxName, "B", "DND doesn't work correctly");
+    public void validateAlertText() {
+        Actions actions = new Actions(driver);
+        actions
+                .contextClick(driver.findElement(By.id("hot-spot")))
+                .build()
+                .perform();
+        Alert alert = driver.switchTo().alert();
+        String text = alert.getText();
+        Assert.assertEquals(text, "You selected a context menu", "Alerts text is wrong");
+        alert.dismiss();
     }
 
     @AfterMethod
