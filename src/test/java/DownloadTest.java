@@ -3,12 +3,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +50,6 @@ public class DownloadTest {
     }
 
     public boolean isFileDownloaded(String downloadPath, String fileName) {
-        boolean flag = false;
         File dir = new File(downloadPath);
         File[] dir_contents = dir.listFiles();
 
